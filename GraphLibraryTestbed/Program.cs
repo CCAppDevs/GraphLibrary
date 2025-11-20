@@ -7,50 +7,26 @@ namespace GraphLibraryTestbed
     {
         static void Main(string[] args)
         {
-            //Tree myTree = new Tree();
+            // Relationships (a is adjacent to b)
+            // olympia is adjacent to tenino
+            // olympia is adjacent to centralia
+            // olympia is adjacent to tacoma
+            // tacoma is adjacent to tenino
+            // tacoma is adjacent to seattle
+            // centralia is adjacent to portland
 
-            //myTree.Print();
 
+            Graph map = new Graph();
+            map.CreateNode("Olympia");
+            map.CreateNode("Lacey");
+            map.CreateNode("Tumwater");
+            map.CreateNode("Centralia");
+            map.CreateNode("Tenino");
+            map.CreateNode("Rochester");
 
-            Node root = new Node("C:/");
-            
+            map.AddEdge("distance", 1, "Olympia", "Lacey");
 
-            Node users = root.AddChild(new Node("Users"));
-            users.AddChild(new Node("Jesse"));
-            users.AddChild(new Node("Tom"));
-            users.AddChild(new Node("Alice"));
-            Node programs = root.AddChild(new Node("Programs"));
-            Node code = programs.AddChild(new Node("VSCode"));
-
-            code.AddChild(new Node("bin"));
-
-            PrintTree(root, 0);
-        }
-        
-        static void PrintTree(Node root, int level)
-        {
-            // base case
-            if (root == null)
-            {
-                return;
-            }
-
-            string line = "";
-
-            for (int i = 0; i < level; i++)
-            {
-                line += "  ";
-            }
-
-            line += root.Value;
-
-            Console.WriteLine(line);
-
-            // recurse
-            for (int i = 0; i < root.Children.Count; i++)
-            {
-                PrintTree(root.Children[i], level + 1);
-            }
+            //Console.WriteLine($"{portland.Label} connects to {portland.Edges[0].Target.Label}");
         }
     }
 }
