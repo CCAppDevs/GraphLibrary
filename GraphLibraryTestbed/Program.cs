@@ -22,10 +22,19 @@ namespace GraphLibraryTestbed
             map.CreateNode("Tumwater");
             map.CreateNode("Centralia");
             map.CreateNode("Tenino");
-            map.CreateNode("Rochester");
+            map.CreateNode("Tacoma");
+            map.CreateNode("Seattle");
+            map.CreateNode("Portland");
 
             map.AddEdge("distance", 1, "Olympia", "Lacey");
+            map.AddEdge("distance", 1, "Olympia", "Tumwater");
+            map.AddEdge("distance", 2, "Olympia", "Tenino");
+            map.AddEdge("distance", 3, "Olympia", "Centralia");
+            map.AddEdge("distance", 3, "Olympia", "Tacoma");
+            map.AddEdge("distance", 5, "Olympia", "Seattle");
+            map.AddEdge("distance", 5, "Olympia", "Portland");
 
+            map.PrintGraph();
             //Console.WriteLine($"{portland.Label} connects to {portland.Edges[0].Target.Label}");
         }
     }

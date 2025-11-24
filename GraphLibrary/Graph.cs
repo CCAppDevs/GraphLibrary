@@ -45,6 +45,9 @@ namespace GraphLibrary
                 new Edge(label, weight, v1, v2),
                 new Edge(label, weight, v2, v1)
             });
+
+            v1.AddEdge(v2, label, weight);
+            v2.AddEdge(v1, label, weight);
         }
 
         public void AddEdge(string label, int weight, string label1, string label2)
@@ -62,6 +65,63 @@ namespace GraphLibrary
                 new Edge(label, weight, v1, v2),
                 new Edge(label, weight, v2, v1)
             });
+
+            v1.AddEdge(v2, label, weight);
+            v2.AddEdge(v1, label, weight);
+        }
+
+        public int[,] CreateAdjMatrix()
+        {
+            int[,] adjMatrix = new int[Vertices.Count, Vertices.Count];
+
+            for (int x = 0; x < Vertices.Count; x++)
+            {
+                Vertex a = Vertices[x];
+
+                for (int y = 0; y < Vertices.Count; y++)
+                {
+                    Vertex b = Vertices[y];
+
+                    Edge edge = a.Edges.FirstOrDefault(e => e.Target == b);
+
+                    if (edge != null)
+                    {
+                        adjMatrix[x, y] = edge.Weight;
+                    }
+
+                    
+                }
+            }
+
+            return adjMatrix;
+        }
+
+        public void PrintGraph()
+        {
+            // need to get a 2d array of the adjacency matrix
+            var adjMatrix = CreateAdjMatrix();
+
+            Console.Write("            ");
+            // print the labels across the top
+            foreach (var vert in Vertices)
+            {
+                Console.Write($"{vert.Label.PadRight(12, ' ')}");
+            }
+            Console.WriteLine();
+
+            // print the columns
+            for (int x = 0; x < Vertices.Count; x++)
+            {
+                Console.Write($"{Vertices[x].Label.PadRight(12, ' ')}");
+
+                for (int y = 0; y < Vertices.Count; y++)
+                {
+                    Console.Write($"{adjMatrix[x,y]}".PadRight(12, ' '));
+                }
+
+                Console.WriteLine();
+            }
         }
     }
 }
+
